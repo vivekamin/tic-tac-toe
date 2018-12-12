@@ -1,5 +1,8 @@
 # tic-tac-toe
 ## Developed using React and Semantic UI, [click here](https://build-famzncuyyb.now.sh) to play
+#### User can choose different Symbols to play game according to their choice
+#### User can undo the steps
+#### User can Restart the game
 
 
 <img width="1440" alt="screen shot 2018-12-12 at 5 56 03 am" src="https://user-images.githubusercontent.com/25477734/49871148-ac459180-fdd2-11e8-98d6-5323f80392b5.png">
