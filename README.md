@@ -1,5 +1,5 @@
 # tic-tac-toe
-## Developed using React and Semantic UI, [click here](https://build-famzncuyyb.now.sh) to play
+## Developed using React and Semantic UI, [click here](https://build-gfahrgqeul.now.sh) to play
 #### User can choose different Symbols to play game according to their choice
 #### User can undo the steps
 #### User can Restart the game
