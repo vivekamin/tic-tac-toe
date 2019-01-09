@@ -23,7 +23,7 @@ class Game extends Component {
       squaresStates: [Array(9).fill(null)],
       currentSquares: Array(9).fill(null),
       nextPlayer: true,
-      sameSym: false
+      sameSym: false,
     }
     this.state = this.initialState;
   }
@@ -32,7 +32,7 @@ class Game extends Component {
     this.setState(this.initialState);
   }
 
-  handleChange = (e, { value }, name) => {
+  handleSymbolChange = (e, { value }, name) => {
     console.log(e, value, name);
     if (name === 'player1' && value !== this.state.player2) {
       const copyOfSquares = this.state.currentSquares.map((elem) => elem === this.state.player1 ? value : elem);
@@ -59,7 +59,9 @@ class Game extends Component {
 
   handleClick = (i) => {
     const copyOfSquares = this.state.currentSquares.slice();
-    if (winnerLogic(copyOfSquares) || copyOfSquares[i] || this.state.player1 === '' || this.state.player2 === '') {
+    const { winner } = winnerLogic(this.state.currentSquares);
+    console.log(winner);
+    if (winner || copyOfSquares[i] || this.state.player1 === '' || this.state.player2 === '') {
       return;
     }
     console.log(copyOfSquares[i]);
@@ -88,7 +90,8 @@ class Game extends Component {
 
   render() {
     let status;
-    const winner = winnerLogic(this.state.currentSquares);
+    const {winner, winnerTiles} = winnerLogic(this.state.currentSquares);
+    //console.log(winnerTiles);
     let startGame = this.state.player1 !== '' && this.state.player2 !== '';
 
     if (winner) {
@@ -107,11 +110,11 @@ class Game extends Component {
           <Grid.Row style={headStyle} columns={2}>
             <Grid.Column >
               <h3>Player 1</h3>
-              <Dropdown placeholder='Select Symbol' selection fluid value={this.state.player1} onChange={(e, { value }) => this.handleChange(e, { value }, 'player1')} options={options} />
+              <Dropdown placeholder='Select Symbol' selection fluid value={this.state.player1} onChange={(e, { value }) => this.handleSymbolChange(e, { value }, 'player1')} options={options} />
             </Grid.Column>
             <Grid.Column>
               <h3>Player 2</h3>
-              <Dropdown placeholder='Select Symbol' selection fluid value={this.state.player2} onChange={(e, { value }) => this.handleChange(e, { value }, 'player2')} options={options} />
+              <Dropdown placeholder='Select Symbol' selection fluid value={this.state.player2} onChange={(e, { value }) => this.handleSymbolChange(e, { value }, 'player2')} options={options} />
             </Grid.Column>
           </Grid.Row>
 
@@ -133,7 +136,7 @@ class Game extends Component {
           {startGame &&
             <Grid.Row columns={2} style={headStyle}>
               <Grid.Column >
-                <Segment color='black' inverted><div className="status" ><b>{status}</b></div></Segment>
+                <Segment color='black' inverted><div className={status.includes('Winner')?"winner":""} ><b>{status}</b></div></Segment>
               </Grid.Column>
               <Grid.Column >
                 <Button style={{ fontSize: '1em' }} icon="undo" onClick={this.handleUndo} content="undo" labelPosition='left' />
@@ -143,7 +146,7 @@ class Game extends Component {
 
             </Grid.Row>}
         </Grid>
-        <Board currentSquares={this.state.currentSquares} onClick={this.handleClick} startGame={startGame} />
+        <Board currentSquares={this.state.currentSquares} onClick={this.handleClick} startGame={startGame} winnerTiles={winnerTiles}/>
       </div>
 
     );

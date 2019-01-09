@@ -1,27 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import { Grid } from 'semantic-ui-react'
 
 import Square from './Square';
 
-class Board extends Component {
-    renderBox(i) {
-        return <Square value={this.props.currentSquares[i]} onClick={() => this.props.onClick(i)} />;
-    }
-
-    render() {
-        
-        return (
+const Board = ({startGame, currentSquares, onClick, winnerTiles}) => ( 
             <div>
-                {this.props.startGame && < hr/>}
-                {this.props.startGame &&
+                {startGame && < hr/>}
+                {startGame &&
                     
                     <Grid style={{ paddingLeft: '20%', paddingRight: '20%', textAlign: 'center', height: '50%', paddingTop: '3%', }} celled='internally'>
                         <Grid.Row columns={3} >
                             {[0, 1, 2].map((index) => {
+                                console.log(index in winnerTiles, index, winnerTiles);
                                 return (
                                     <Grid.Column key={index}  >
-                                        {this.renderBox(index)}
+                                        {<Square className={winnerTiles.includes(index) ? 'winner' : ''} value={currentSquares[index]} onClick={() => onClick(index)} />}
                                     </Grid.Column>)
                             })}
 
@@ -30,18 +24,20 @@ class Board extends Component {
 
                         <Grid.Row columns={3}>
                             {[3, 4, 5].map((index) => {
+                                console.log(index in winnerTiles, index, winnerTiles);
                                 return (
                                     <Grid.Column key={index} >
-                                        {this.renderBox(index)}
+                                        {<Square className={winnerTiles.includes(index) ? 'winner' : ''} value={currentSquares[index]} onClick={() => onClick(index)} />}
                                     </Grid.Column>)
                             })}
                         </Grid.Row>
 
                         <Grid.Row columns={3}>
                             {[6, 7, 8].map((index) => {
+                                console.log(index in winnerTiles, index, winnerTiles);
                                 return (
                                     <Grid.Column key={index} >
-                                        {this.renderBox(index)}
+                                        {<Square className={winnerTiles.includes(index) ? 'winner' : ''} value={currentSquares[index]} onClick={() => onClick(index)} />}
                                     </Grid.Column>)
                             })}
                         </Grid.Row>
@@ -49,7 +45,6 @@ class Board extends Component {
 
             </div>
         );
-    }
-}
+   
 
 export default Board;

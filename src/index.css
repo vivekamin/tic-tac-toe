@@ -13,4 +13,8 @@ code {
     monospace;
 }
 
+.winner {
+  color: #4CAF50 !important;
+}
+
 
