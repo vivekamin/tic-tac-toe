@@ -5,7 +5,7 @@
 #### User can Restart the game
 
 
-<img width="1440" alt="screen shot 2018-12-12 at 5 56 03 am" src="https://user-images.githubusercontent.com/25477734/49871148-ac459180-fdd2-11e8-98d6-5323f80392b5.png">
+<img width="1440" alt="screen shot 2018-12-12 at 5 56 03 am" src="https://user-images.githubusercontent.com/25477734/50554167-e805a580-0c72-11e9-9228-7b2af6e4d4d2.png">
 
 ## How to run the project:
   - Install Node for your platform: 
