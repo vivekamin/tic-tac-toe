@@ -33,7 +33,7 @@ class Game extends Component {
   }
 
   handleSymbolChange = (e, { value }, name) => {
-    console.log(e, value, name);
+    //console.log(e, value, name);
     if (name === 'player1' && value !== this.state.player2) {
       const copyOfSquares = this.state.currentSquares.map((elem) => elem === this.state.player1 ? value : elem);
       const copyOfSquareStates = this.state.squaresStates.map((elem) => {
@@ -60,11 +60,11 @@ class Game extends Component {
   handleClick = (i) => {
     const copyOfSquares = this.state.currentSquares.slice();
     const { winner } = winnerLogic(this.state.currentSquares);
-    console.log(winner);
+    //console.log(winner);
     if (winner || copyOfSquares[i] || this.state.player1 === '' || this.state.player2 === '') {
       return;
     }
-    console.log(copyOfSquares[i]);
+    //console.log(copyOfSquares[i]);
     const squaresStates = this.state.squaresStates;
     copyOfSquares[i] = this.state.nextPlayer ? this.state.player1 : this.state.player2;
     this.setState({
